@@ -1,22 +1,24 @@
 <template>
   <div id="app">
-    <Video></Video>
+    <VideoPlayer />
   </div>
 </template>
 
 <script>
-import Video from './components/Video'
+import VideoPlayer from './components/VideoPlayer'
 
 export default {
   name: 'app',
   components: {
-    Video
+    VideoPlayer
   },
   methods: {}
 }
 </script>
 
 <style lang="scss">
+@import './styles/index';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

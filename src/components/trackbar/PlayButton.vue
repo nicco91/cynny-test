@@ -1,25 +1,31 @@
 <template>
   <div
     class="play-button"
-    :class="{ 'pause': playing }"
-    @click="onPlay()">
+    :class="{ 'pause': isPlaying }"
+    @click="togglePlay()">
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  props: {
-    playing: { type: Boolean, required: true }
+  computed: {
+    ...mapGetters([
+      'isPlaying'
+    ])
   },
   methods: {
-    onPlay () {
-      this.$emit('play')
-    }
+    ...mapActions([
+      'togglePlay'
+    ])
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  @import '../../styles/variables';
+
   .play-button {
     cursor: pointer;
     opacity: .75;
@@ -29,20 +35,20 @@ export default {
     }
 
     box-sizing: border-box;
-    height: 74px;
-    border-color: transparent transparent transparent #202020;
-    transition: 100ms all ease;
+    height: 20px;
+    border-color: transparent transparent transparent $controls-color;
+    transition: 300ms all ease;
     will-change: border-width;
     cursor: pointer;
     margin-left: 13px;
     // play state
     border-style: solid;
-    border-width: 37px 0 37px 60px;
+    border-width: 10px 0 10px 17px;
 
     // paused state
     &.pause {
       border-style: double;
-      border-width: 0px 0 0px 60px;
+      border-width: 0px 0 0px 17px;
     }
   }
 </style>
