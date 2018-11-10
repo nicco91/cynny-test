@@ -4,3 +4,4 @@ export const volume = state => state.mute ? 0 : state.volume
 export const currentTime = state => state.currentTime
 export const totalTime = state => state.totalTime
 export const isLoading = state => state.loading
+export const buffers = state => [...state.buffers]

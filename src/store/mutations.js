@@ -26,5 +26,8 @@ export default {
   },
   stopLoading (state) {
     state.loading = false
+  },
+  setBuffers (state, payload) {
+    state.buffers = payload
   }
 }

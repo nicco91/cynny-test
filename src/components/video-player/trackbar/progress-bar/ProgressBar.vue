@@ -4,6 +4,11 @@
     ref="trackbarElement"
     @mousemove="onSetMousePos"
     @click="onSetCurrentTime">
+    <ProgressBarBuffer
+      v-for="buffer in buffers"
+      :key="buffer.start + '-' + buffer.end"
+      :buffer="buffer"
+    />
     <div class="progress-bar" :style="{ width: percentage + '%' }"></div>
     <!-- <ProgressBarTooltip :time="mouseTime" :position="mousePosition" /> -->
   </div>
@@ -11,10 +16,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ProgressBarBuffer from './ProgressBarBuffer'
 // import ProgressBarTooltip from './ProgressBarTooltip'
 
 export default {
   components: {
+    ProgressBarBuffer
     // ProgressBarTooltip
   },
   data () {
@@ -25,7 +32,8 @@ export default {
   computed: {
     ...mapGetters([
       'currentTime',
-      'totalTime'
+      'totalTime',
+      'buffers'
     ]),
     percentage () {
       return (this.currentTime / this.totalTime) * 100
@@ -46,7 +54,6 @@ export default {
     },
     onSetMousePos (event) {
       this.mousePosition = event.offsetX
-      // console.log(event.offsetX)
     },
     onClearMousePos () {
       this.mousePosition = null
@@ -56,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../styles/variables';
+  @import '../../../../styles/variables';
 
   .trackbar-progress {
     width: 100%;

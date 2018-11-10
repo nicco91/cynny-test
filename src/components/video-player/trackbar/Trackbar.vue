@@ -40,7 +40,7 @@ export default {
 <style lang="scss" scoped>
   .trackbar {
     width: 100%;
-    background-color: black;
+    background-color: rgba(0, 0, 0, .7);
     padding: 10px;
     display: flex;
     align-items: center;

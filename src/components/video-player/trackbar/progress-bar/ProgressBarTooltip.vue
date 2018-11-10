@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { formatTime } from '../../../helpers/formatter'
+import { formatTime } from '../../../../helpers/formatter'
 
 export default {
   props: {
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../styles/variables';
+  @import '../../../../styles/variables';
 
   .tooltip {
     background-color: rgba(gray, .2);

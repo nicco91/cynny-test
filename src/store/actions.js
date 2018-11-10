@@ -22,3 +22,11 @@ export const setTotalTime = ({ commit }, totalTime) => {
 
 export const startLoading = ({ commit }) => commit('startLoading')
 export const stopLoading = ({ commit }) => commit('stopLoading')
+
+export const setBuffers = ({ commit }, timeRanges) => {
+  const buffers = []
+  for (let i = 0; i < timeRanges.length; i++) {
+    buffers.push({ start: timeRanges.start(i), end: timeRanges.end(i) })
+  }
+  commit('setBuffers', buffers)
+}

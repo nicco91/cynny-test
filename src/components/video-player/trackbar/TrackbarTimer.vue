@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { formatTime } from '../../helpers/formatter'
+import { formatTime } from '../../../helpers/formatter'
 
 export default {
   computed: {
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../styles/variables';
+  @import '../../../styles/variables';
 
   .trackbar-timer {
     color: darken($controls-color, 20);

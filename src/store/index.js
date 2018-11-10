@@ -12,6 +12,9 @@ const state = {
   volume: 100,
   mute: false,
   currentVideo: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4',
+  buffers: [],
+  queue: [
+  ],
   currentTime: 0,
   totalTime: 0
 }

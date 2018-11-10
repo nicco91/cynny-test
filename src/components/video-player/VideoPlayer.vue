@@ -8,8 +8,10 @@
       @playing="stopLoading">
       <source :src="currentVideo">
     </video>
-    <Trackbar @changedTime="onChangeCurrentTime"/>
     <Loader />
+    <div class="trackbar-container">
+      <Trackbar @changedTime="onChangeCurrentTime"/>
+    </div>
   </div>
 </template>
 
@@ -39,21 +41,21 @@ export default {
       'togglePlay',
       'setCurrentTime',
       'setTotalTime',
+      'setBuffers',
       'startLoading',
       'stopLoading'
     ]),
     onTimeUpdate (event) {
+      this.setBuffers(event.target.buffered)
       this.setCurrentTime(event.target.currentTime)
     },
-    onChangeCurrentTime (event) {
-      this.videoElement.currentTime = event
+    onChangeCurrentTime (currentTime) {
+      this.videoElement.currentTime = currentTime
+      this.setCurrentTime(currentTime)
     },
     onLoaded (event) {
       this.setTotalTime(event.target.duration)
     }
-  },
-  mounted () {
-    console.log(this.videoElement.played)
   },
   watch: {
     isPlaying () {
@@ -81,5 +83,20 @@ export default {
     video {
       width:100%;
     }
+
+    &:hover {
+      .trackbar-container {
+        opacity: 1;
+      }
+    }
+  }
+
+  .trackbar-container {
+    opacity: 0;
+    transition: opacity .15s ease-out;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 </style>
