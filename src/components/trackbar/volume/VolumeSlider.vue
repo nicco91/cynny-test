@@ -34,8 +34,8 @@ export default {
   @mixin volume-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background: $primary;
     border-radius: 100%;
     cursor: pointer;

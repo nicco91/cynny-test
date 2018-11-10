@@ -1,22 +1,38 @@
 <template>
   <div class="trackbar">
     <div class="play-button-container">
-      <PlayButton />
+      <TrackbarPlayButton />
     </div>
     <div class="volume-container">
       <Volume />
+    </div>
+    <div class="timer-container">
+      <TrackbarTimer />
+    </div>
+    <div class="progress-container">
+      <ProgressBar @changedTime="onChangedTime" />
     </div>
   </div>
 </template>
 
 <script>
-import PlayButton from './PlayButton'
+import TrackbarPlayButton from './TrackbarPlayButton'
+import TrackbarTimer from './TrackbarTimer'
+import ProgressBar from './progress-bar/ProgressBar'
 import Volume from './volume/Volume'
 
 export default {
   components: {
-    PlayButton,
+    TrackbarPlayButton,
+    TrackbarTimer,
+    ProgressBar,
     Volume
+  },
+  methods: {
+    onChangedTime (event) {
+      console.log(event)
+      this.$emit('changedTime', event)
+    }
   }
 }
 </script>
@@ -34,8 +50,14 @@ export default {
       padding-top: 2px;
     }
 
+    .progress-container {
+      flex: 1 1 auto;
+    }
+
     .play-button-container,
-    .volume-container {
+    .volume-container,
+    .timer-container,
+    .progress-container {
       margin-right: 16px
     }
   }

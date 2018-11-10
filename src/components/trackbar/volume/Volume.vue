@@ -26,7 +26,7 @@ export default {
   }
   .volume-slider-container {
     display: inline-block;
-    width: 100px;
+    width: 80px;
     padding-bottom: 8px;
   }
 </style>
