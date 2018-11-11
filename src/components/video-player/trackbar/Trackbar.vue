@@ -1,21 +1,21 @@
 <template>
-  <div class="trackbar">
-    <div class="prev-button-container">
+  <div class="trackbar row m-0">
+    <div class="prev-button-container col-auto p-0">
       <TrackbarPrevButton />
     </div>
-    <div class="play-button-container">
+    <div class="play-button-container col-auto p-0">
       <TrackbarPlayButton />
     </div>
-    <div class="next-button-container">
+    <div class="next-button-container col-auto p-0">
       <TrackbarNextButton />
     </div>
-    <div class="volume-container">
+    <div class="volume-container col-auto p-0">
       <Volume />
     </div>
-    <div class="timer-container">
+    <div class="timer-container col-auto p-0 ml-auto ml-md-0">
       <TrackbarTimer />
     </div>
-    <div class="progress-container">
+    <div class="progress-container col-12 col-md-auto p-0 mt-3 mt-md-0">
       <ProgressBar @changedTime="onChangedTime" />
     </div>
     <div class="nightmode-container d-none d-md-block">
@@ -87,6 +87,7 @@ export default {
     }
 
     @include media-breakpoint-down(sm) {
+      .timer-container,
       .progress-container {
         margin: 0;
       }
