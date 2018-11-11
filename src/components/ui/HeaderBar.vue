@@ -62,8 +62,7 @@ export default {
       font-size: 34px;
       font-weight: bold;
       font-style: italic;
-    
-      
+
       @include media-breakpoint-down(xs) {
         font-size: 23px
       }

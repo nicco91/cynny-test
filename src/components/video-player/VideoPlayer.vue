@@ -12,7 +12,6 @@
         playsinline
         autoplay
         :muted="mute">
-        <!-- @dblclick="toggleFullscreen" -->
         <source :src="currentVideo.source">
       </video>
       <Loader :isLoading="isLoading" />

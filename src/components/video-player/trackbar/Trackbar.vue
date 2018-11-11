@@ -1,7 +1,13 @@
 <template>
   <div class="trackbar">
+    <div class="prev-button-container">
+      <TrackbarPrevButton />
+    </div>
     <div class="play-button-container">
       <TrackbarPlayButton />
+    </div>
+    <div class="next-button-container">
+      <TrackbarNextButton />
     </div>
     <div class="volume-container">
       <Volume />
@@ -20,6 +26,8 @@
 
 <script>
 import TrackbarPlayButton from './TrackbarPlayButton'
+import TrackbarNextButton from './TrackbarNextButton'
+import TrackbarPrevButton from './TrackbarPrevButton'
 import TrackbarNightModeButton from './TrackbarNightModeButton'
 import TrackbarTimer from './TrackbarTimer'
 import ProgressBar from './progress-bar/ProgressBar'
@@ -27,6 +35,8 @@ import Volume from './volume/Volume'
 
 export default {
   components: {
+    TrackbarNextButton,
+    TrackbarPrevButton,
     TrackbarNightModeButton,
     TrackbarPlayButton,
     TrackbarTimer,
@@ -65,11 +75,15 @@ export default {
       flex: 1 1 auto;
     }
 
+    .prev-button-container {
+      margin-right: 8px;
+    }
+    .next-button-container,
     .play-button-container,
     .volume-container,
     .timer-container,
     .progress-container {
-      margin-right: 16px
+      margin-right: 16px;
     }
 
     @include media-breakpoint-down(sm) {
