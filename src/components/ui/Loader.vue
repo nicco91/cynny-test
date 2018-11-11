@@ -10,13 +10,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  computed: {
-    ...mapGetters([
-      'isLoading'
-    ])
+  props: {
+    isLoading: { type: Boolean, required: true }
   }
 }
 </script>

@@ -3,6 +3,7 @@
     type="range"
     min="0" max="100"
     :value="volume"
+    :style="{ background: background }"
     class="volume-slider"
     @change="onChange"
     @input="onChange">
@@ -15,7 +16,15 @@ export default {
   computed: {
     ...mapGetters([
       'volume'
-    ])
+    ]),
+    background () {
+      const style = 'linear-gradient(to right, ' +
+        `rgba(255,255,255,1) 0%, rgba(255,255,255,1) ${this.volume}%, ` +
+        `rgba(255,255,255,.45) ${this.volume}%, rgba(255,255,255,.45) 100%` +
+      ')'
+      console.log(style)
+      return style
+    }
   },
   methods: {
     ...mapActions([
@@ -36,7 +45,7 @@ export default {
     appearance: none;
     width: 12px;
     height: 12px;
-    background: $primary;
+    background: $controls-color;
     border-radius: 100%;
     cursor: pointer;
   }
@@ -51,7 +60,6 @@ export default {
     -webkit-transition: .3s;
     transition: all .3s;
     cursor: pointer;
-
   }
   .volume-slider::-webkit-slider-thumb {
     @include volume-slider-thumb();

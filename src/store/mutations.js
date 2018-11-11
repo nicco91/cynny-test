@@ -29,5 +29,16 @@ export default {
   },
   setBuffers (state, payload) {
     state.buffers = payload
+  },
+  changeVideo (state, payload) {
+    const queue = [...state.queue]
+    const selectedItemIndex = queue.findIndex(item => item.id === payload)
+    const skippedItems = queue.splice(0, selectedItemIndex + 1)
+    const selectedItem = skippedItems.pop()
+    const newQueue = [selectedItem, ...queue, ...skippedItems]
+    state.queue = newQueue
+    state.playing = false
+    state.currentTime = 0
+    state.totalTime = 0
   }
 }

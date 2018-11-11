@@ -1,23 +1,29 @@
 <template>
-  <div class="video">
-    <video ref="videoElement"
-      @click="togglePlay"
-      @timeupdate="onTimeUpdate"
-      @loadedmetadata="onLoaded"
-      @waiting="startLoading"
-      @playing="stopLoading">
-      <source :src="currentVideo">
-    </video>
-    <Loader />
-    <div class="trackbar-container">
-      <Trackbar @changedTime="onChangeCurrentTime"/>
+  <div class="video-player">
+    <div class="video">
+      <video ref="videoElement"
+        @click="togglePlay"
+        @timeupdate="onTimeUpdate"
+        @loadedmetadata="onLoaded"
+        @waiting="startLoading"
+        @playing="stopLoading"
+        @ended="nextVideo"
+        autoplay
+        :muted="mute">
+        <source :src="currentVideo.source">
+      </video>
+      <Loader :isLoading="isLoading" />
+      <div class="trackbar-container" :class="{ show: !isPlaying }">
+        <Trackbar @changedTime="onChangeCurrentTime"/>
+      </div>
     </div>
+    <h2 class="video-title">{{ currentVideo.title }}</h2>
   </div>
 </template>
 
 <script>
 import Trackbar from './trackbar/Trackbar'
-import Loader from './Loader'
+import Loader from '../ui/Loader'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -28,9 +34,11 @@ export default {
   computed: {
     ...mapGetters([
       'isPlaying',
+      'isLoading',
       'currentVideo',
-      'volume',
-      'currentTime'
+      'currentTime',
+      'mute',
+      'volume'
     ]),
     videoElement () {
       return this.$refs.videoElement
@@ -43,7 +51,8 @@ export default {
       'setTotalTime',
       'setBuffers',
       'startLoading',
-      'stopLoading'
+      'stopLoading',
+      'nextVideo'
     ]),
     onTimeUpdate (event) {
       this.setBuffers(event.target.buffered)
@@ -64,6 +73,10 @@ export default {
       } else {
         this.videoElement.pause()
       }
+    },
+    currentVideo () {
+      this.videoElement.load()
+      this.togglePlay()
     },
     volume () {
       this.videoElement.volume = this.volume / 100
@@ -91,6 +104,11 @@ export default {
     }
   }
 
+  .video-title {
+    text-align: left;
+    font-weight: normal;
+  }
+
   .trackbar-container {
     opacity: 0;
     transition: opacity .3s ease-out;
@@ -98,5 +116,9 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
+
+    &.show {
+      opacity: 1;
+    }
   }
 </style>
