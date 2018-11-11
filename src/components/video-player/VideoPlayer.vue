@@ -105,19 +105,6 @@ export default {
     volume () {
       this.videoElement.volume = this.volume / 100
     }
-    // fullscreen () {
-    //   if (this.fullscreen) {
-    //     if (this.videoElement.requestFullscreen) {
-    //       this.videoElement.requestFullscreen()
-    //     } else if (this.videoElement.mozRequestFullScreen) {
-    //       this.videoElement.mozRequestFullScreen()
-    //     } else if (this.videoElement.webkitRequestFullscreen) {
-    //       this.videoElement.webkitRequestFullscreen()
-    //     }
-    //   } else {
-    //     Document.exitFullscreen()
-    //   }
-    // }
   }
 }
 </script>
@@ -130,7 +117,7 @@ export default {
   .video {
     width: 100%;
     margin: auto;
-    background-color: black;
+    background-color: transparent;
     position: relative;
 
     video {
@@ -153,7 +140,7 @@ export default {
     opacity: 0;
     transition: opacity .3s ease-out;
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 0;
     right: 0;
 

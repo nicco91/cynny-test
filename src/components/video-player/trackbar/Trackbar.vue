@@ -12,7 +12,7 @@
     <div class="progress-container">
       <ProgressBar @changedTime="onChangedTime" />
     </div>
-    <div class="nightmode-container">
+    <div class="nightmode-container d-none d-md-block">
       <TrackbarNightModeButton />
     </div>
   </div>
@@ -42,6 +42,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../../../styles/index';
+
   .trackbar {
     width: 100%;
     background: linear-gradient(
@@ -68,6 +70,12 @@ export default {
     .timer-container,
     .progress-container {
       margin-right: 16px
+    }
+
+    @include media-breakpoint-down(sm) {
+      .progress-container {
+        margin: 0;
+      }
     }
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="volume">
     <VolumeButton />
-    <div class="volume-slider-container">
+    <div class="volume-slider-container d-none d-md-block">
       <VolumeSlider />
     </div>
   </div>

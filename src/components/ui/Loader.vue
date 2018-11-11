@@ -23,7 +23,7 @@ export default {
   display: flex;
   top: 0;
   left: 0;
-  bottom: 0;
+  bottom: 4px;
   right: 0;
   background-color: rgba(black, .5);
 }

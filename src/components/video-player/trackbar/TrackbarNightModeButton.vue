@@ -2,7 +2,7 @@
   <button class="nightmode-button" type="button" @click="toggleNightMode()">
     <span class="button-content" v-if="nightMode">
       <i class="material-icons">brightness_5</i>
-      Exit night mode
+      Day mode
     </span>
     <span class="button-content" v-else>
       <i class="material-icons">brightness_3</i>

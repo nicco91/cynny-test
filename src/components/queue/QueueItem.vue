@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="col-6 pl-0">
-        <h5 class="item-title text-truncate"
+        <h5 class="item-title text-truncate my-3"
           @mouseover="showPlay = true"
           @mouseout="showPlay = false"
           @click="onChangeVideo()">
@@ -73,7 +73,7 @@ export default {
     .video-container {
       position: relative;
       cursor: pointer;
-      background-color: black;
+      background-color: transparent;
 
       video {
         width: 100%;
@@ -87,7 +87,7 @@ export default {
 
     .duration {
       position: absolute;
-      bottom: 6px;
+      bottom: 10px;
       right: 6px;
       background-color: rgba(black, .75);
       color: white;
