@@ -1,6 +1,10 @@
 {
-  "name": "cynny-test",
+  "name": "cynny-tube",
   "version": "0.1.0",
+  "author": {
+    "name": "Niccolò Taddei",
+    "email": "n.taddei91@gmail.com"
+  },
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
