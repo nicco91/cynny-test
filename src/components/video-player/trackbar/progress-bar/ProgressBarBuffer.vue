@@ -1,22 +1,24 @@
 <template>
-  <div class="progress-bar-buffer" :style="style"></div>
+  <div class="progress-bar-buffer" :style="{ width: bufferPercentage }"></div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
 export default {
-  props: [
-    'buffer'
-  ],
   computed: {
     ...mapGetters([
-      'totalTime'
+      'totalTime',
+      'currentTime',
+      'buffers'
     ]),
-    style () {
-      const width = (((this.buffer.end - this.buffer.start) / this.totalTime) * 100) + '%'
-      const left = ((this.buffer.start / this.totalTime) * 100) + '%'
-      return { width, left }
+    bufferPercentage () {
+      if (this.buffers.length) {
+        const filteredBuffers = this.buffers.filter(b => b.start <= this.currentTime)
+        const bufferEnd = filteredBuffers[filteredBuffers.length - 1].end
+        return ((bufferEnd / this.totalTime) * 100) + '%'
+      }
+      return '0%'
     }
   }
 }
@@ -24,9 +26,8 @@ export default {
 
 <style lang="scss" scoped>
   .progress-bar-buffer {
+    height: 100%;
     position: absolute;
-    top: 0;
-    bottom: 0;
     background-color: rgba(255, 255, 255, 0.75);
   }
 </style>

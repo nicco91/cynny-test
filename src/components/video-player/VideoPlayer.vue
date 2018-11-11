@@ -93,7 +93,7 @@ export default {
 
   .trackbar-container {
     opacity: 0;
-    transition: opacity .15s ease-out;
+    transition: opacity .3s ease-out;
     position: absolute;
     bottom: 0;
     left: 0;
