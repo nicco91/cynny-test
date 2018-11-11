@@ -67,6 +67,10 @@ export default {
     align-items: center;
     justify-content: start;
 
+    @include media-breakpoint-down(sm) {
+      padding: 0;
+    }
+
     .volume-container {
       padding-top: 2px;
     }
@@ -87,7 +91,6 @@ export default {
     }
 
     @include media-breakpoint-down(sm) {
-      .timer-container,
       .progress-container {
         margin: 0;
       }

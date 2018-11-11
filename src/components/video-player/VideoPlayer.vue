@@ -18,6 +18,7 @@
       <div class="trackbar-container" :class="{ show: !isPlaying }">
         <Trackbar @changedTime="onChangeCurrentTime"/>
       </div>
+      <VideoPlayerIndicator />
     </div>
     <h3 class="video-title">{{ currentVideo.title }}</h3>
   </div>
@@ -26,11 +27,13 @@
 <script>
 import Trackbar from './trackbar/Trackbar'
 import Loader from '../ui/Loader'
+import VideoPlayerIndicator from './VideoPlayerIndicator'
 import { mapGetters, mapActions } from 'vuex'
 import { eventBus } from '../../event-bus'
 
 export default {
   components: {
+    VideoPlayerIndicator,
     Trackbar,
     Loader
   },

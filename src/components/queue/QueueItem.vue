@@ -1,7 +1,7 @@
 <template>
   <div class="queue-item">
     <div class="row">
-      <div class="col-6">
+      <div class="col-5">
         <div class="video-container"
           @mouseover="showPlay = true"
           @mouseout="showPlay = false"
@@ -17,7 +17,7 @@
           <Loader :isLoading="isLoading" />
         </div>
       </div>
-      <div class="col-6 pl-0">
+      <div class="col-7 pl-0">
         <h5 class="item-title text-truncate my-3"
           @mouseover="showPlay = true"
           @mouseout="showPlay = false"
