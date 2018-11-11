@@ -1,19 +1,36 @@
 <template>
-  <div class="queue-item"
-    @mouseover="showPlay = true"
-    @mouseout="showPlay = false"
-    @click="changeVideo(queueItem.id)">
-    <video preload="metadata" @loadedmetadata="setDuration" @loadeddata="isLoading = false">
-      <source :src="queueItem.source + '#t0.1'">
-    </video>
-    <div class="duration">{{ formattedDuration }}</div>
-    <QueueItemPlay :show="showPlay && !isLoading" />
-    <Loader :isLoading="isLoading" />
+  <div class="queue-item">
+    <div class="row">
+      <div class="col-6">
+        <div class="video-container"
+          @mouseover="showPlay = true"
+          @mouseout="showPlay = false"
+          @click="onChangeVideo()">
+          <video
+            preload="metadata"
+            @loadedmetadata="setDuration"
+            @loadeddata="isLoading = false">
+            <source :src="queueItem.source + '#t0.1'">
+          </video>
+          <div class="duration">{{ formattedDuration }}</div>
+          <QueueItemPlay :show="showPlay && !isLoading" />
+          <Loader :isLoading="isLoading" />
+        </div>
+      </div>
+      <div class="col-6 pl-0">
+        <h5 class="item-title text-truncate"
+          @mouseover="showPlay = true"
+          @mouseout="showPlay = false"
+          @click="onChangeVideo()">
+          {{ queueItem.title }}
+        </h5>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { eventBus } from '../../event-bus'
 import { formatTime } from '../../helpers/formatter'
 import QueueItemPlay from './QueueItemPlay'
 import Loader from '../ui/Loader'
@@ -39,11 +56,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'changeVideo'
-    ]),
     setDuration (event) {
       this.duration = event.target.duration
+    },
+    onChangeVideo () {
+      eventBus.$emit('changeVideo', this.queueItem.id)
     }
   }
 }
@@ -51,16 +68,21 @@ export default {
 
 <style lang="scss" scoped>
   .queue-item {
-    max-width: 256px;
-    max-height: 144px;
     margin-bottom: 16px;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    background-color: black;
 
-    video {
-      width: 100%;
+    .video-container {
+      position: relative;
+      cursor: pointer;
+      background-color: black;
+
+      video {
+        width: 100%;
+      }
+    }
+
+    .item-title {
+      text-align: left;
+      cursor: pointer;
     }
 
     .duration {

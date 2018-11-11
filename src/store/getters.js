@@ -7,3 +7,4 @@ export const totalTime = state => state.totalTime
 export const isLoading = state => state.loading
 export const buffers = state => [...state.buffers]
 export const queueItems = state => state.queue.slice(1)
+export const fullscreen = state => state.fullscreen

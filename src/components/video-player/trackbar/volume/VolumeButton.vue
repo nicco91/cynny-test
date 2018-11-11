@@ -24,18 +24,9 @@ export default {
 
 <style lang="scss" scoped>
   @import '../../../../styles/variables';
+  @import '../../../../styles/mixins';
 
   .volume-button {
-    background: none;
-    border: none;
-    outline: none;
-    color: $controls-color;
-    opacity: .75;
-    cursor: pointer;
-    width: auto;
-
-    &:hover {
-      opacity: 1;
-    }
+    @include trackbar-button;
   }
 </style>

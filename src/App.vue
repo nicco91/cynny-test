@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <div class="container">
-      <div class="video-player-container">
-        <VideoPlayer />
-      </div>
-      <div class="queue-container">
-        <Queue />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <VideoPlayer />
+        </div>
+        <div class="col-lg-4">
+          <hr class="d-lg-none">
+          <Queue />
+        </div>
       </div>
     </div>
   </div>
@@ -39,21 +42,5 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-.container {
-  max-width: 1440px;
-  display: flex;
-  margin: auto;
-  padding: 0 16px;
-}
-
-.video-player-container {
-  flex: 1 1 auto;
-  padding-right: 32px;
-}
-
-.queue-container {
-  flex: 0 0 auto;
 }
 </style>

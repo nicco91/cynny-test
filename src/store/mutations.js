@@ -40,5 +40,11 @@ export default {
     state.playing = false
     state.currentTime = 0
     state.totalTime = 0
+  },
+  setFullscreen (state) {
+    state.fullscreen = true
+  },
+  exitFullscreen (state) {
+    state.fullscreen = false
   }
 }

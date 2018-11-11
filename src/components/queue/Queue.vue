@@ -1,6 +1,6 @@
 <template>
   <div class="queue">
-    <h3 class="queue-title">Next videos</h3>
+    <h4 class="queue-title mb-3 mt-4 mt-md-0">Next videos</h4>
     <QueueItem
       v-for="queueItem in queueItems"
       :key="queueItem.id"

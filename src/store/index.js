@@ -11,6 +11,7 @@ const state = {
   loading: false,
   volume: 100,
   mute: true,
+  fullscreen: false,
   buffers: [],
   queue: [{
     id: 1,

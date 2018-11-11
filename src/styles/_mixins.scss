@@ -1,0 +1,13 @@
+@mixin trackbar-button {
+  background: none;
+  border: none;
+  outline: none;
+  color: $controls-color;
+  opacity: .75;
+  cursor: pointer;
+  width: auto;
+
+  &:hover {
+    opacity: 1;
+  }
+}

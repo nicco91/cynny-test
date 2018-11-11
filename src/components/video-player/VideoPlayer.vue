@@ -1,5 +1,6 @@
 <template>
-  <div class="video-player">
+  <div class="video-player animated"
+    :class="{ fadeIn: !changingVideo, fadeOut: changingVideo }">
     <div class="video">
       <video ref="videoElement"
         @click="togglePlay"
@@ -7,9 +8,11 @@
         @loadedmetadata="onLoaded"
         @waiting="startLoading"
         @playing="stopLoading"
-        @ended="nextVideo"
+        @ended="onNextVideo"
+        playsinline
         autoplay
         :muted="mute">
+        <!-- @dblclick="toggleFullscreen" -->
         <source :src="currentVideo.source">
       </video>
       <Loader :isLoading="isLoading" />
@@ -17,7 +20,7 @@
         <Trackbar @changedTime="onChangeCurrentTime"/>
       </div>
     </div>
-    <h2 class="video-title">{{ currentVideo.title }}</h2>
+    <h3 class="video-title">{{ currentVideo.title }}</h3>
   </div>
 </template>
 
@@ -25,11 +28,26 @@
 import Trackbar from './trackbar/Trackbar'
 import Loader from '../ui/Loader'
 import { mapGetters, mapActions } from 'vuex'
+import { eventBus } from '../../event-bus'
 
 export default {
   components: {
     Trackbar,
     Loader
+  },
+  mounted () {
+    eventBus.$on('changeVideo', (queueItemId) => {
+      this.changingVideo = true
+      setTimeout(() => {
+        this.changeVideo(queueItemId)
+        this.changingVideo = false
+      }, 2000)
+    })
+  },
+  data () {
+    return {
+      changingVideo: false
+    }
   },
   computed: {
     ...mapGetters([
@@ -38,7 +56,9 @@ export default {
       'currentVideo',
       'currentTime',
       'mute',
-      'volume'
+      'volume',
+      'fullscreen',
+      'queueItems'
     ]),
     videoElement () {
       return this.$refs.videoElement
@@ -52,7 +72,8 @@ export default {
       'setBuffers',
       'startLoading',
       'stopLoading',
-      'nextVideo'
+      'changeVideo',
+      'toggleFullscreen'
     ]),
     onTimeUpdate (event) {
       this.setBuffers(event.target.buffered)
@@ -64,6 +85,9 @@ export default {
     },
     onLoaded (event) {
       this.setTotalTime(event.target.duration)
+    },
+    onNextVideo () {
+      eventBus.$emit('changeVideo', this.queueItems[0].id)
     }
   },
   watch: {
@@ -81,14 +105,30 @@ export default {
     volume () {
       this.videoElement.volume = this.volume / 100
     }
+    // fullscreen () {
+    //   if (this.fullscreen) {
+    //     if (this.videoElement.requestFullscreen) {
+    //       this.videoElement.requestFullscreen()
+    //     } else if (this.videoElement.mozRequestFullScreen) {
+    //       this.videoElement.mozRequestFullScreen()
+    //     } else if (this.videoElement.webkitRequestFullscreen) {
+    //       this.videoElement.webkitRequestFullscreen()
+    //     }
+    //   } else {
+    //     Document.exitFullscreen()
+    //   }
+    // }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  .video-player {
+    animation-duration: 1.5s;
+  }
+
   .video {
     width: 100%;
-    max-width: 1280px;
     margin: auto;
     background-color: black;
     position: relative;

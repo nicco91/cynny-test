@@ -12,11 +12,15 @@
     <div class="progress-container">
       <ProgressBar @changedTime="onChangedTime" />
     </div>
+    <!-- <div class="fullscreen-container">
+      <TrackbarFullscreenButton />
+    </div> -->
   </div>
 </template>
 
 <script>
 import TrackbarPlayButton from './TrackbarPlayButton'
+// import TrackbarFullscreenButton from './TrackbarFullscreenButton'
 import TrackbarTimer from './TrackbarTimer'
 import ProgressBar from './progress-bar/ProgressBar'
 import Volume from './volume/Volume'
@@ -24,13 +28,13 @@ import Volume from './volume/Volume'
 export default {
   components: {
     TrackbarPlayButton,
+    // TrackbarFullscreenButton,
     TrackbarTimer,
     ProgressBar,
     Volume
   },
   methods: {
     onChangedTime (event) {
-      console.log(event)
       this.$emit('changedTime', event)
     }
   }
@@ -40,7 +44,12 @@ export default {
 <style lang="scss" scoped>
   .trackbar {
     width: 100%;
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.75));
+    background: linear-gradient(
+      to bottom,
+      rgba(black, 0) 0%,
+      rgba(black, 0.25) 50%,
+      rgba(black, 0.75) 100%
+    );
     padding: 60px 10px 10px;
     display: flex;
     align-items: center;

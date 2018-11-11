@@ -16,6 +16,14 @@ export const toggleMute = ({ state, commit }) => {
   }
 }
 
+export const toggleFullscreen = ({ state, commit }) => {
+  if (state.fullscreen) {
+    commit('exitFullscreen')
+  } else {
+    commit('setFullscreen')
+  }
+}
+
 export const setTotalTime = ({ commit }, totalTime) => {
   commit('setTotalTime', totalTime)
 }
