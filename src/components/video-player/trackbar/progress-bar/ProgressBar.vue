@@ -2,11 +2,16 @@
   <div
     class="trackbar-progress"
     ref="trackbarElement"
+    @mouseover="showTooltip = true"
+    @mouseout="showTooltip = false"
     @mousemove="onSetMousePos"
     @click="onSetCurrentTime">
     <ProgressBarBuffer />
     <ProgressBarPlayed />
-    <!-- <ProgressBarTooltip :time="mouseTime" :position="mousePosition" /> -->
+    <ProgressBarTooltip
+      v-if="showTooltip"
+      :time="mouseTime"
+      :position="mousePosition" />
   </div>
 </template>
 
@@ -14,16 +19,17 @@
 import { mapGetters } from 'vuex'
 import ProgressBarPlayed from './ProgressBarPlayed'
 import ProgressBarBuffer from './ProgressBarBuffer'
-// import ProgressBarTooltip from './ProgressBarTooltip'
+import ProgressBarTooltip from './ProgressBarTooltip'
 
 export default {
   components: {
     ProgressBarBuffer,
-    ProgressBarPlayed
-    // ProgressBarTooltip
+    ProgressBarPlayed,
+    ProgressBarTooltip
   },
   data () {
     return {
+      showTooltip: false,
       mousePosition: null
     }
   },
@@ -47,7 +53,6 @@ export default {
     },
     onSetMousePos (event) {
       this.mousePosition = event.offsetX
-      console.log(this.mousePosition)
     },
     onClearMousePos () {
       this.mousePosition = null

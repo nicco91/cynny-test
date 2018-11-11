@@ -46,5 +46,11 @@ export default {
   },
   exitFullscreen (state) {
     state.fullscreen = false
+  },
+  setNightMode (state) {
+    state.nightMode = true
+  },
+  exitNightMode (state) {
+    state.nightMode = false
   }
 }

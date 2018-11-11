@@ -13,6 +13,7 @@ const state = {
   mute: true,
   fullscreen: false,
   buffers: [],
+  nightMode: false,
   queue: [{
     id: 1,
     title: 'Big Buck Bunny',

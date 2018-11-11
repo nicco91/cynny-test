@@ -43,6 +43,10 @@ export const changeVideo = ({ state, commit }, selectedItemId) => {
   commit('changeVideo', selectedItemId)
 }
 
-export const nextVideo = ({ getters, dispatch }) => {
-  dispatch('changeVideo', getters.queueItems[0].id)
+export const toggleNightMode = ({ state, commit }) => {
+  if (state.nightMode) {
+    commit('exitNightMode')
+  } else {
+    commit('setNightMode')
+  }
 }

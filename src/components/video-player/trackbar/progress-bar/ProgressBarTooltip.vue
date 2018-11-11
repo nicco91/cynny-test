@@ -10,15 +10,14 @@ import { formatTime } from '../../../../helpers/formatter'
 export default {
   props: {
     time: { type: Number },
-    position: {}
+    position: { type: Number }
   },
   computed: {
     formattedTime () {
       return this.time ? formatTime(this.time) : ''
     },
     left () {
-      console.log(this.position)
-      return (this.position ? this.position : '0') + 'px'
+      return (this.position ? (this.position - 20) : 0) + 'px'
     }
   }
 }
@@ -28,11 +27,11 @@ export default {
   @import '../../../../styles/variables';
 
   .tooltip {
-    background-color: rgba(gray, .2);
+    background-color: rgba(black, .5);
     color: $controls-color;
     font-size: 14px;
-    padding: 6px 12px;
+    padding: 3px 6px;
     position: absolute;
-    top: -20px;
+    top: -24px;
   }
 </style>

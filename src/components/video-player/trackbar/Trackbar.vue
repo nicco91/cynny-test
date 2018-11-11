@@ -12,23 +12,23 @@
     <div class="progress-container">
       <ProgressBar @changedTime="onChangedTime" />
     </div>
-    <!-- <div class="fullscreen-container">
-      <TrackbarFullscreenButton />
-    </div> -->
+    <div class="nightmode-container">
+      <TrackbarNightModeButton />
+    </div>
   </div>
 </template>
 
 <script>
 import TrackbarPlayButton from './TrackbarPlayButton'
-// import TrackbarFullscreenButton from './TrackbarFullscreenButton'
+import TrackbarNightModeButton from './TrackbarNightModeButton'
 import TrackbarTimer from './TrackbarTimer'
 import ProgressBar from './progress-bar/ProgressBar'
 import Volume from './volume/Volume'
 
 export default {
   components: {
+    TrackbarNightModeButton,
     TrackbarPlayButton,
-    // TrackbarFullscreenButton,
     TrackbarTimer,
     ProgressBar,
     Volume
@@ -50,7 +50,7 @@ export default {
       rgba(black, 0.25) 50%,
       rgba(black, 0.75) 100%
     );
-    padding: 60px 10px 10px;
+    padding: 60px 20px 15px 10px;
     display: flex;
     align-items: center;
     justify-content: start;
